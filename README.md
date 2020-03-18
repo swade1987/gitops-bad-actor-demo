@@ -27,7 +27,8 @@ kubectl create namespace flux
 
 helm upgrade -i flux fluxcd/flux \
 --set git.url=git@github.com:swade1987/gitops-bad-actor-demo \
---set git.path=kustomize/dev
+--set git.path=kustomize/dev \
+--set git.pollInterval=1m \
 --namespace flux
 ```
 
@@ -36,7 +37,7 @@ helm upgrade -i flux fluxcd/flux \
 Add the output of below as a deploy key to the repository
 
 ```
-fluxctl identity --k8s-fwd-ns default
+fluxctl identity --k8s-fwd-ns flux
 ```
 
 ### Install Helm Operator
